@@ -62,7 +62,7 @@ class RequestListViewModel(private val container: AppContainer) : ViewModel() {
         gate.launch(viewModelScope) { loadInternal() }
     }
 
-    fun setFilter(newFilter: RequestStatus?) {
+    fun selectFilter(newFilter: RequestStatus?) {
         if (filter == newFilter) return
         filter = newFilter
         gate.cancel()
@@ -145,31 +145,31 @@ fun RequestListScreen(
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FilterChip(
                 selected = vm.filter == null,
-                onClick = { vm.setFilter(null) },
+                onClick = { vm.selectFilter(null) },
                 label = { Text(stringResource(R.string.filter_all)) },
                 modifier = Modifier.testTag(TestIds.REQUESTS_FILTER_ALL),
             )
             FilterChip(
                 selected = vm.filter == RequestStatus.PENDING,
-                onClick = { vm.setFilter(RequestStatus.PENDING) },
+                onClick = { vm.selectFilter(RequestStatus.PENDING) },
                 label = { Text(stringResource(R.string.filter_pending)) },
                 modifier = Modifier.testTag(TestIds.REQUESTS_FILTER_PENDING),
             )
             FilterChip(
                 selected = vm.filter == RequestStatus.APPROVED,
-                onClick = { vm.setFilter(RequestStatus.APPROVED) },
+                onClick = { vm.selectFilter(RequestStatus.APPROVED) },
                 label = { Text(stringResource(R.string.filter_approved)) },
                 modifier = Modifier.testTag(TestIds.REQUESTS_FILTER_APPROVED),
             )
             FilterChip(
                 selected = vm.filter == RequestStatus.REJECTED,
-                onClick = { vm.setFilter(RequestStatus.REJECTED) },
+                onClick = { vm.selectFilter(RequestStatus.REJECTED) },
                 label = { Text(stringResource(R.string.filter_rejected)) },
                 modifier = Modifier.testTag(TestIds.REQUESTS_FILTER_REJECTED),
             )
             FilterChip(
                 selected = vm.filter == RequestStatus.CANCELLED,
-                onClick = { vm.setFilter(RequestStatus.CANCELLED) },
+                onClick = { vm.selectFilter(RequestStatus.CANCELLED) },
                 label = { Text(stringResource(R.string.filter_cancelled)) },
                 modifier = Modifier.testTag(TestIds.REQUESTS_FILTER_CANCELLED),
             )
