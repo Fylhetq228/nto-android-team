@@ -10,7 +10,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 fun ResumeEffect(onResume: () -> Unit) {
     val currentOnResume by rememberUpdatedState(onResume)
     val lifecycleOwner = LocalLifecycleOwner.current
-    LifecycleResumeEffect(lifecycleOwner) {
+    LifecycleResumeEffect(Unit, lifecycleOwner) {
         currentOnResume()
         onPauseOrDispose { }
     }
